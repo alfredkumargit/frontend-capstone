@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+/* Nav code */
+
+.header {
+  display: flex; /* Align items horizontally */
+  justify-content: space-between; /* Space out elements */
+  align-items: center; /* Center items vertically */
+  padding: 10px; /* Add some padding */
+}
+
+.logo {
+  height: 50px; /* Adjust the height of the logo as needed */
+}
+
+nav ul {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  display: flex; /* Align items horizontally */
+}
+
+nav li {
+  margin-right: 20px; /* Add some space between items */
+}
+
+nav a {
+  text-decoration: none; /* Remove underline from links */
+  color: black; /* Change this to your preferred color */
+}
+
