@@ -38,7 +38,6 @@
 }
 
 /* Nav code */
-
 .header {
   display: flex; /* Align items horizontally */
   justify-content: space-between; /* Space out elements */
@@ -48,6 +47,15 @@
 
 .logo {
   height: 50px; /* Adjust the height of the logo as needed */
+}
+
+.navigation {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 1rem 1.5rem;
 }
 
 nav ul {
@@ -65,4 +73,40 @@ nav a {
   text-decoration: none; /* Remove underline from links */
   color: black; /* Change this to your preferred color */
 }
+
+/* Responsive CSS */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .navigation {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  nav ul {
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  nav li {
+    margin-right: 0; /* Remove right margin */
+    margin-bottom: 10px; /* Add bottom margin */
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    height: 40px; /* Adjust logo size */
+  }
+
+  .navigation {
+    padding: 0.5rem 1rem; /* Adjust padding */
+  }
+
+  nav a {
+    padding: 8px; /* Adjust padding */
+  }
+}
+
 
