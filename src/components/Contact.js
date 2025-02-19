@@ -1,14 +1,12 @@
 import React from 'react';
-
   
-  const Main = () =>  {
+  const Contact = () =>  {
 	return (
 	  <div>
-		Main
+		Contact Page
 	  </div>
 	);
   }
   
-  export default Main;
-
+  export default Contact;
   

@@ -1,14 +1,12 @@
 import React from 'react';
-
   
-  const Main = () =>  {
+  const Services = () =>  {
 	return (
 	  <div>
-		Main
+		Services Page
 	  </div>
 	);
   }
   
-  export default Main;
-
+  export default Services;
   
