@@ -6,90 +6,135 @@ const BookingForm = ({ availableTimes, dispatch, onNewBooking, submitForm }) => 
   const [time, setTime] = useState('');
   const [guests, setGuests] = useState('');
   const [occasion, setOccasion] = useState('');
+  const [isFormValid, setIsFormValid] = useState(false);
   const navigate = useNavigate();
+
+  const validateForm = () => {
+    if (date && time && guests >= 1 && guests <= 10 && occasion) {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
+  };
+
+  const handleDateChange = (e) => {
+    const newDate = e.target.value;
+    setDate(newDate);
+    dispatch({ type: 'updateTimes', date: newDate });
+    validateForm();
+  };
+
+  const handleInputChange = (setter) => (e) => {
+    setter(e.target.value);
+    validateForm();
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const newBooking = { date, time, guests, occasion };
     console.log(newBooking);
 
-    // Update booking data with new reservation
     onNewBooking(newBooking);
-
-    // Submit the form data using submitForm
     submitForm(newBooking);
   };
 
-  const handleDateChange = (e) => {
-    setDate(e.target.value);
-    dispatch({ type: 'updateTimes', date: e.target.value });
-  };
-
   return (
-    <form
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        maxWidth: '300px',
-        margin: '0 auto',
-        gap: '20px'
-      }}
-      onSubmit={handleSubmit}
-    >
-      <label htmlFor="res-date">Choose date</label>
-      <input
-        type="date"
-        id="res-date"
-        value={date}
-        onChange={handleDateChange}
-        aria-label="Choose date"
-      />
-
-      <label htmlFor="res-time">Choose time</label>
-      <select
-        id="res-time"
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
-        aria-label="Choose time"
+    <main>
+      <form
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          maxWidth: '500px', // Adequate width for the form
+          margin: '0 auto',
+          gap: '20px'
+        }}
+        onSubmit={handleSubmit}
+        aria-label="Reservation Form"
       >
-        {availableTimes && availableTimes.length > 0 ? (
-          availableTimes.map((availableTime, index) => (
-            <option key={index} value={availableTime}>
-              {availableTime}
-            </option>
-          ))
-        ) : (
-          <option value="" disabled>No available times</option>
-        )}
-      </select>
+        <fieldset style={{ border: 'none', padding: '0', width: '100%' }}>
+          <legend style={{ textAlign: 'center', marginBottom: '20px' }}>Make Your Reservation</legend>
 
-      <label htmlFor="guests">Number of guests</label>
-      <input
-        type="number"
-        placeholder="1"
-        min="1"
-        max="10"
-        id="guests"
-        value={guests}
-        onChange={(e) => setGuests(e.target.value)}
-        aria-label="Number of guests"
-      />
+          <div style={{ marginBottom: '20px', width: '100%' }}>
+            <label htmlFor="res-date" style={{ display: 'block', marginBottom: '5px' }}>Choose date:</label>
+            <input
+              type="date"
+              id="res-date"
+              value={date}
+              onChange={handleDateChange}
+              required
+              aria-label="Choose a date for your reservation"
+              style={{ width: '100%', padding: '8px' }}
+            />
+          </div>
 
-      <label htmlFor="occasion">Occasion</label>
-      <select
-        id="occasion"
-        value={occasion}
-        onChange={(e) => setOccasion(e.target.value)}
-        aria-label="Occasion"
-      >
-        <option value="Birthday">Birthday</option>
-        <option value="Anniversary">Anniversary</option>
-      </select>
+          <div style={{ marginBottom: '20px', width: '100%' }}>
+            <label htmlFor="res-time" style={{ display: 'block', marginBottom: '5px' }}>Choose time:</label>
+            <select
+              id="res-time"
+              value={time}
+              onChange={handleInputChange(setTime)}
+              required
+              aria-label="Choose a time for your reservation"
+              style={{ width: '100%', padding: '8px' }}
+            >
+              {availableTimes && availableTimes.length > 0 ? (
+                availableTimes.map((availableTime, index) => (
+                  <option key={index} value={availableTime}>
+                    {availableTime}
+                  </option>
+                ))
+              ) : (
+                <option value="" disabled>No available times</option>
+              )}
+            </select>
+          </div>
 
-      <input type="submit" value="Make Your Reservation" aria-label="Submit reservation" />
-    </form>
+          <div style={{ marginBottom: '20px', width: '100%' }}>
+            <label htmlFor="guests" style={{ display: 'block', marginBottom: '5px' }}>Number of guests:</label>
+            <input
+              type="number"
+              placeholder="1"
+              min="1"
+              max="10"
+              id="guests"
+              value={guests}
+              onChange={handleInputChange(setGuests)}
+              required
+              aria-label="Enter the number of guests"
+              style={{ width: '100%', padding: '8px' }}
+            />
+          </div>
+
+          <div style={{ marginBottom: '20px', width: '100%' }}>
+            <label htmlFor="occasion" style={{ display: 'block', marginBottom: '5px' }}>Occasion:</label>
+            <select
+              id="occasion"
+              value={occasion}
+              onChange={handleInputChange(setOccasion)}
+              required
+              aria-label="Select the occasion for your reservation"
+              style={{ width: '100%', padding: '8px' }}
+            >
+              <option value="" disabled>Select occasion</option>
+              <option value="Birthday">Birthday</option>
+              <option value="Anniversary">Anniversary</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <div style={{ textAlign: 'center', width: '100%' }}>
+          <input
+            type="submit"
+            value="Make Your Reservation"
+            aria-label="Click to submit your reservation"
+            disabled={!isFormValid}
+            style={{ padding: '10px 20px', fontSize: '16px' }}
+          />
+        </div>
+      </form>
+    </main>
   );
 };
 
