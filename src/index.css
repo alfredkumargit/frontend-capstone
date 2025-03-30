@@ -1,13 +1,564 @@
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body and Typography */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Header Navigation */
+.navigation {
+  display: flex;
+  justify-content: space-between; /* Space between logo and navigation */
+  align-items: center; /* Align items vertically in the center */
+  padding: 1rem 2rem;
+  background-color: #fff; /* color for desktop */
+  /* position: sticky; */
+  top: 0;
+  z-index: 1000;
+}
+
+.navigation a img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  text-decoration: none;
+}
+
+/* Navigation Styling */
+.nav-container {
+  display: flex;
+  justify-content: space-between; /* Ensure alignment of logo and menu */
+  align-items: center;
+}
+
+.burger-menu {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  cursor: pointer;
+  margin-top: -4em;
+}
+
+.burger-menu .line {
+  width: 25px;
+  height: 3px;
+  background-color: white; /* Default color for burger menu lines */
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin: 0 1rem;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #f4ce14; /* Accent color on hover */
+}
+
+/* Hero Section */
+.hero-section {
+  background-color: #495e57;
+  max-height: 400px;
+  margin-bottom:10rem;
+}
+
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  max-width: 1200px;
+  padding: 2rem;
+  position: relative;
+  top: 4rem;
+}
+
+.hero-detail {
+  flex: 1;
+}
+
+.hero-detail h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #f4ce14;
+}
+
+.hero-detail h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.hero-detail p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  color: #fff;
+}
+
+.hero-detail a {
+  background-color: #f4ce14; /* Yellow background */
+  color: #333; /* Dark text color */
+  padding: 0.8rem 2rem; /* Padding around the link */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  text-transform: uppercase; /* Uppercase text */
+  font-weight: bold; /* Bold font style */
+  font-size: 1rem; /* Font size */
+  text-decoration: none; /* Remove underline */
+  cursor: pointer; /* Pointer cursor on hover */
+  display: inline-block; /* Makes it behave like a button */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.hero-detail a:hover {
+  background-color: #e3b913; /* Darker yellow for hover effect */
+}
+
+.hero-img {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-img img {
+  border-radius: 10px;
+  height: 400px;
+  object-fit: cover;
+  width: 400px;
+}
+
+/* Specials Section Styling */
+
+.specials-heading{
+    display: flex;
+    max-width: 1200px;
+    margin-bottom: 2.5rem;
+}
+
+.specials-heading h3 {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+
+.specials-section {
+  /* padding: 2rem; */
+  /* background-color: #f4f4f4; */ /* Light background color for contrast */
+  max-width: 1200px; /* Set maximum width */
+  margin: 0 auto; /* Center the section horizontally */
+  padding-bottom: 6rem;
+}
+
+
+
+.specials-container {
+  display: flex;
+  justify-content: space-between;
+  /* gap: 2.2rem; */ /* Spacing between columns */
+}
+
+.specials-column {
+  flex: 1;
+  background-color: white;
+  /* border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center; */
+}
+
+/* Highlight Items Container */
+.highlight-items {
+  max-width: 300px; /* Limit the maximum width */
+  background-color: white; /* Clean background color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for modern look */
+  overflow: hidden; /* Ensure content doesn't exceed container boundaries */
+  margin: 0 auto; /* Center horizontally */
+}
+
+/* Image Styling */
+.highlight-items img {
+  width: 250px; /* Image fills the entire container width */
+  height: 300px; /* Maintain aspect ratio */
+  display: block; /* Remove inline spacing */
+}
+
+/* Content Wrapper */
+.item-wrapper {
+  padding: 1rem; /* Add padding around the text content */
+  text-align: left; /* Align text */
+}
+
+/* Title and Price Styling */
+.title-price {
+  display: flex;
+  justify-content: space-between; /* Align title and price horizontally */
+  align-items: center; /* Ensure proper alignment */
+  margin-bottom: 0.5rem; /* Space below the title-price block */
+}
+
+.item-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #495E57; /* Neutral, modern color */
+}
+
+.item-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #495E57;
+}
+
+/* Paragraph Styling */
+.item-wrapper p {
+  font-size: 0.9rem;
+  color: #333; /* Slightly darker text color */
+  margin-bottom: 1rem; /* Space below the description */
+  line-height: 1.4; /* Improve readability */
+}
+
+/* Button Styling */
+.item-wrapper button {
+  background-color: #f4ce14; /* Eye-catching button color */
+  color: #333;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  display: inline-flex; /* Align button content horizontally */
+  align-items: center; /* Center text and icon vertically */
+  gap: 0.5rem; /* Space between text and icon */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.item-wrapper button:hover {
+  background-color: #e3b913; /* Slightly darker yellow on hover */
+}
+
+.image-container {
+  width: 300px;
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Inside Hero Images */
+.blanks, .blanks2 {
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  min-height: 67vh;
+}
+
+.blanks2 {
+  background-image: url('./assets/images/restaurant-chef.jpg');
+}
+
+.blanks {
+  background-image: url('./assets/images/restaurant.jpg');
+  background-position: 50%;
+}
+
+.blanks h1, .blanks2 h1 {
+  background-color: #495e57;
+  border-radius: 10px;
+  color: #edefee;
+  font-weight: 900;
+  padding: 1rem 2rem;
+}
+
+/* Footer styles */
+footer {
+  background-color: #f4f4f4; /* Light gray background */
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: row; /* Arrange items in a row */
+  justify-content: space-between; /* Space out the content */
+  align-items: center; /* Align items vertically */
+  flex-wrap: nowrap; /* Prevent wrapping */
+  max-width: 1200px;
+  margin:0 auto;
+}
+
+.footer-container div {
+  margin: 0 10px; /* Add spacing between elements */
+  flex: 1 1 auto; /* Allow items to take up equal space */
+}
+
+.footer-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+  padding-left: 30px;
+}
+
+.footer-wrapper div {
+  margin: 10px;
+  flex: 1;
+}
+
+h4 {
+  font-size: 1.2em;
+  color: #333; /* Dark text color */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 5px 0;
+}
+
+ul a {
+  text-decoration: none;
+  color: #000;
+}
+
+ul a:hover {
+  text-decoration: underline;
+}
+
+.footer-container img {
+  display: block;
+  width: 100px;
+}
+
+
+/* Form Styles */
+
+/* .formmain{
+  margin-top: -130px;
+} */
+
+form {
+  background-color: white;
+  padding: 80px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  text-align: left;
+}
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333; /* Dark text color */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #555; /* Slightly darker text */
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50; /* Green button */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049; /* Darker green */
+}
+
+input[type="submit"]:disabled {
+  background-color: #ccc; /* Greyed out when disabled */
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  form {
+    /* padding: 10px; */
+  }
+
+  legend {
+    font-size: 1.2rem;
+  }
+
+  .footer-container {
+    flex-direction: column; /* Stacks content vertically on small screens */
+    align-items: center; /* Centers items horizontally */
+}
+
+.footer-container div {
+    margin-bottom: 20px; /* Add spacing between items */
+}
+
+}
+
+/* Responsive Styling for Hero and Navigation */
+@media screen and (max-width: 768px) {
+  .navigation {
+    background-color: #ffffff; /* Add background color for mobile header */
+  }
+
+  .burger-menu {
+    display: flex; /* Show burger menu for mobile screens */
+    position: absolute;
+    right: 2rem; /* Align burger menu to the right */
+  }
+
+  .burger-menu .line {
+    background-color: black; /* Change burger menu lines to black */
+  }
+
+  .nav-links {
+    display: none; /* Hide navigation links by default */
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Position below burger menu */
+    right: 0;
+    background-color: white; /* Background for mobile navigation links */
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index:99;
+  }
+
+  .nav-links.open {
+    display: flex; /* Show navigation links when burger menu is clicked */
+  }
+
+  .nav-links li {
+    margin: 1rem 0;
+  }
+
+  .nav-links li a {
+    color: black; /* Black text for mobile navigation */
+  }
+
+  .nav-links li a:hover {
+    color: #f4ce14; /* Accent color for hover effect */
+  }
+
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+
+  .hero-detail {
+    margin-bottom: 5rem;
+  }
+
+  .hero-detail h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-detail h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero-detail p {
+    font-size: 1rem;
+  }
+
+  .hero-detail a .button-hover {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.5rem;
+  }
+
+  .hero-img {
+    display: none;
+  }
+
+  /* Responsive Styling for Columns */
+
+  .specials-container {
+    flex-direction: column; /* Stack columns vertically on small screens */
+    gap: 2rem; /* Increase spacing between stacked columns */
+  }
+
+  .specials-column {
+    width: 100%; /* Ensure columns take full width on small screens */
+  }
+
+  .specials-heading h3 {
+    font-size: 35px;
+    font-weight: 700;
+  }
+
+  .specials-heading {
+    display: flex;
+    margin-bottom: 2.5rem;
+    justify-content: center;
+  }
+
+  .hero-section {
+    background-color: #495e57;
+    max-height: 400px;
+    margin-bottom: 3rem;
+}
+
 }

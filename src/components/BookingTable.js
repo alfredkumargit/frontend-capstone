@@ -1,6 +1,11 @@
 import React from 'react';
 
 const BookingTable = ({ bookingData }) => {
+  // Only render the table if there is at least one booking
+  if (!bookingData || bookingData.length === 0) {
+    return null; // Return nothing if no booking data is available
+  }
+
   return (
     <table style={{ width: '100%', borderCollapse: 'collapse' }}>
       <thead>

@@ -2,9 +2,7 @@ import React from 'react';
   
   const Services = () =>  {
 	return (
-	  <div>
-		Services Page
-	  </div>
+		<main><div class="blanks"><h1>Order Online</h1></div></main>
 	);
   }
   

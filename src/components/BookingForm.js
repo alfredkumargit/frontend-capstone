@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const BookingForm = ({ availableTimes, dispatch, onNewBooking, submitForm }) => {
@@ -7,26 +7,29 @@ const BookingForm = ({ availableTimes, dispatch, onNewBooking, submitForm }) => 
   const [guests, setGuests] = useState('');
   const [occasion, setOccasion] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
-  const navigate = useNavigate();
 
-  const validateForm = () => {
+  // useEffect to validate form whenever state changes
+  useEffect(() => {
     if (date && time && guests >= 1 && guests <= 10 && occasion) {
       setIsFormValid(true);
     } else {
       setIsFormValid(false);
     }
-  };
+  }, [date, time, guests, occasion]);
 
   const handleDateChange = (e) => {
     const newDate = e.target.value;
     setDate(newDate);
     dispatch({ type: 'updateTimes', date: newDate });
-    validateForm();
   };
 
   const handleInputChange = (setter) => (e) => {
     setter(e.target.value);
-    validateForm();
+  };
+
+  const handleGuestsChange = (e) => {
+    const guestsValue = parseInt(e.target.value, 10); // Convert to number
+    setGuests(guestsValue);
   };
 
   const handleSubmit = (event) => {
@@ -34,22 +37,14 @@ const BookingForm = ({ availableTimes, dispatch, onNewBooking, submitForm }) => 
     const newBooking = { date, time, guests, occasion };
     console.log(newBooking);
 
-    onNewBooking(newBooking);
-    submitForm(newBooking);
+    onNewBooking(newBooking); // Pass the booking data to the parent
+    submitForm(newBooking); // Call the submit form function
   };
 
   return (
-    <main>
+    <main className='formmain'>
       <form
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          maxWidth: '500px', // Adequate width for the form
-          margin: '0 auto',
-          gap: '20px'
-        }}
+        
         onSubmit={handleSubmit}
         aria-label="Reservation Form"
       >
@@ -100,7 +95,7 @@ const BookingForm = ({ availableTimes, dispatch, onNewBooking, submitForm }) => 
               max="10"
               id="guests"
               value={guests}
-              onChange={handleInputChange(setGuests)}
+              onChange={handleGuestsChange} // Updated handler for guests
               required
               aria-label="Enter the number of guests"
               style={{ width: '100%', padding: '8px' }}
